@@ -5,24 +5,6 @@
 
 import 'choices.js/public/assets/styles/choices.min.css'
 
-export { makeChart } from './core/chart.mjs'
-export { makeDatasets } from './core/datasets.mjs'
-export { fetchData } from './core/fetch.mjs'
-export { formatBigNumber, formatData, formatNumber } from './core/format.mjs'
-
-export * from './core/dom.mjs'
-
-export { makeAxesCheckboxes } from './components/axes.mjs'
-export { makeMeshDropdown } from './components/mesh.mjs'
-export { makeTerritoryDropDown } from './components/territory.mjs'
-
-export * from './core/enums.mjs'
-
-export { COMMUNES } from './data/territories/communes.mjs'
-export { DEPARTEMENTS } from './data/territories/departements.mjs'
-export { EPCIS } from './data/territories/epcis.mjs'
-export { REGIONS } from './data/territories/regions.mjs'
-
 import { makeMeshDropdown } from './components/mesh.mjs'
 import { makeTerritoryDropDown } from './components/territory.mjs'
 import {
