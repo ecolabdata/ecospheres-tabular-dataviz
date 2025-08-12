@@ -134,6 +134,47 @@ Documentation de l'API : https://github.com/datagouv/api-tabular
 - **Chart.js**
 - **Choices.js**
 
+## 📦 Publication sur npm
+
+### Prérequis
+
+- Être connecté à npm avec un compte ayant les droits sur le scope `@ecolabdata`
+- Avoir configuré l'authentification à deux facteurs (OTP)
+
+### Processus de publication
+
+1. **Mise à jour de la version** :
+   ```bash
+   # Version patch (1.0.0 → 1.0.1)
+   npm version patch
+
+   # Version minor (1.0.0 → 1.1.0)
+   npm version minor
+
+   # Version major (1.0.0 → 2.0.0)
+   npm version major
+   ```
+
+2. **Construction et publication** :
+   ```bash
+   # Le build se fait automatiquement via le script "prepare"
+   npm publish --access public --otp=123456
+   ```
+
+   Remplacer `123456` par le code OTP de votre application d'authentification.
+
+3. **Vérification** :
+   ```bash
+   npm view @ecolabdata/tabular-dataviz
+   ```
+
+### Structure des fichiers publiés
+
+- `dist/` : fichiers JavaScript compilés
+- `types/` : déclarations TypeScript
+- `styles/` : fichiers CSS
+- `README.md` : documentation
+
 ## 👥 Auteurs
 
 - Ecolab, Commissariat général au développement durable, Ministère en charge de l&rsquo;environnement.
