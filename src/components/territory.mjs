@@ -51,8 +51,7 @@ export async function makeTerritoryDropDown(indicator) {
     )
     const territorySelect = getTerritorySelect(indicator)
     territorySelect.addEventListener('change', () => {
-      const selectedTerritory = territorySelect.value
-      debug.log(`🗺️ Territory selected: ${selectedTerritory}`)
+      debug.log(`🗺️ Territory selected: ${territorySelect.value}`)
       fetchData(indicator)
     })
   }
