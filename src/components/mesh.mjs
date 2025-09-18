@@ -24,8 +24,7 @@ export function makeMeshDropdown(indicator, possibleMeshes) {
   container.innerHTML = html
   const meshSelect = getMeshSelect(indicator)
   meshSelect.addEventListener('change', () => {
-    const selectedMesh = meshSelect.value
-    debug.log(`📏 Mesh selected: ${selectedMesh}`)
+    debug.log(`📏 Mesh selected: ${meshSelect.value}`)
     makeTerritoryDropDown(indicator)
   })
 }
