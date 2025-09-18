@@ -12,6 +12,7 @@ import {
 } from './dom.mjs'
 import { COLORS } from './enums.mjs'
 import { formatBigNumber, formatNumber } from './format.mjs'
+import { debug } from './debug.mjs'
 
 // Plugin "plein écran" basique
 const fullscreenPlugin = {
@@ -179,7 +180,15 @@ function makeOneYearValue(indicator, datasets) {
 }
 
 export function makeChart(indicator) {
+  debug.log(`⚙️ Computing chart for indicator ${indicator.id}`)
+
   const datasets = makeDatasets(indicator)
+  debug.log(`Chart ${indicator.id}: ${datasets.length} datasets generated`)
+
+  if (datasets.length === 0) {
+    debug.warn(`Chart ${indicator.id}: No data to display`)
+  }
+
   applyColors(datasets)
   const canvas = getChartCanvas(indicator)
   const canvasContainer = canvas.parentElement
