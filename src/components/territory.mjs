@@ -4,6 +4,7 @@ import {
   getTerritorySelect
 } from '../core/dom.mjs'
 import { fetchData } from '../core/fetch.mjs'
+import { debug } from '../core/debug.mjs'
 import { COMMUNES } from '../data/territories/communes.mjs'
 import { DEPARTEMENTS } from '../data/territories/departements.mjs'
 import { EPCIS } from '../data/territories/epcis.mjs'
@@ -50,6 +51,8 @@ export async function makeTerritoryDropDown(indicator) {
     )
     const territorySelect = getTerritorySelect(indicator)
     territorySelect.addEventListener('change', () => {
+      const selectedTerritory = territorySelect.value
+      debug.log(`🗺️ Territory selected: ${selectedTerritory}`)
       fetchData(indicator)
     })
   }

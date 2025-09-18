@@ -14,6 +14,7 @@ import {
 } from './dom.mjs'
 import { DEFAULT_TABULAR_API_URL, GEOCOLUMNS, YEAR_COLUMN } from './enums.mjs'
 import { formatData } from './format.mjs'
+import { debug } from './debug.mjs'
 
 async function fetchPage(url, allData, pageSize = 200) {
   /**
@@ -59,20 +60,34 @@ function getGeoCondition(indicator, mesh) {
 
 export async function fetchData(indicator) {
   const mesh = getCurrentMesh(indicator)
+  const territory = getCurrentTerritory(indicator)
+
+  debug.log(`🔄 Fetching data for indicator ${indicator.id}`, {
+    mesh: mesh,
+    territory: territory || 'National'
+  })
+
   const files = getFiles(indicator)
   const file = files.find((f) => f.mesh === mesh)
   const geoCondition = getGeoCondition(indicator, mesh)
   const baseUrl = getTabularApiUrl(indicator) || DEFAULT_TABULAR_API_URL
   const path = `${baseUrl}/api/resources/${file.id}/data/`
   const url = `${path}?${geoCondition}${YEAR_COLUMN}__sort=asc`
-  const allData = await fetchPage(url, [])
-  const formatedData = formatData(allData, file)
-  // On sauvegarde les données et les axes directement dans le DOM (sous forme de script JSON)
-  // Ce qui permettra de ne pas effectuer de nouvelles requêtes à l'API si l'utilisateur filtre sur les axes
-  saveInTheDOM(indicator, 'data', formatedData)
-  saveInTheDOM(indicator, 'axes', file.axes)
-  // Une fois qu'on a les données, on peut remplir les valeurs possibles des axes
-  // Cela permet de ne pas afficher des valeurs d'axe absentes du jeu de données courant
-  makeAxesCheckboxes(indicator, file, formatedData)
-  makeChart(indicator)
+
+  try {
+    const allData = await fetchPage(url, [])
+    debug.log(`✅ Data fetched: ${allData.length} records`)
+
+    const formatedData = formatData(allData, file)
+    // On sauvegarde les données et les axes directement dans le DOM (sous forme de script JSON)
+    // Ce qui permettra de ne pas effectuer de nouvelles requêtes à l'API si l'utilisateur filtre sur les axes
+    saveInTheDOM(indicator, 'data', formatedData)
+    saveInTheDOM(indicator, 'axes', file.axes)
+    // Une fois qu'on a les données, on peut remplir les valeurs possibles des axes
+    // Cela permet de ne pas afficher des valeurs d'axe absentes du jeu de données courant
+    makeAxesCheckboxes(indicator, file, formatedData)
+    makeChart(indicator)
+  } catch (error) {
+    debug.error('Failed to fetch data', error)
+  }
 }

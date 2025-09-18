@@ -8,6 +8,7 @@ import {
   getAxesDropdownContainer,
   getGroupAxeSwitch
 } from '../core/dom.mjs'
+import { debug } from '../core/debug.mjs'
 
 function getAxesForCurrentFileAndData(file, data) {
   /**
@@ -74,12 +75,19 @@ export function makeAxesCheckboxes(indicator, file, data) {
     const checkboxes = getAxeCheckboxes(indicator, axe)
     checkboxes.forEach((checkbox) => {
       checkbox.addEventListener('change', () => {
+        const checkedValues = checkboxes
+          .filter(cb => cb.checked)
+          .map(cb => cb.dataset.value)
+        debug.log(`📊 Axe "${axe}" filtered:`, checkedValues)
         makeChart(indicator)
       })
     })
     const groupSwitch = getGroupAxeSwitch(indicator, axe)
     if (groupSwitch) {
-      groupSwitch.addEventListener('change', () => makeChart(indicator))
+      groupSwitch.addEventListener('change', () => {
+        debug.log(`📊 Axe "${axe}" regrouping: ${groupSwitch.checked ? 'ON' : 'OFF'}`)
+        makeChart(indicator)
+      })
     }
   })
 }
