@@ -127,8 +127,12 @@ function getConfig(indicator, datasets, minYear, maxYear) {
             display: true,
             text: indicator.unite
           },
+          beginAtZero: indicator.yStartAtZero === true,
           ticks: {
-            callback: (val) => formatBigNumber(val, maxValue)
+            callback: (val) =>
+              indicator.ignoreFormatBigNumber === true
+                ? formatNumber(val)
+                : formatBigNumber(val, maxValue)
           }
         }
       }

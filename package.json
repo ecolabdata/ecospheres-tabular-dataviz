@@ -1,6 +1,6 @@
 {
   "name": "@ecolabdata/tabular-dataviz",
-  "version": "1.0.2",
+  "version": "1.2.0",
   "type": "module",
   "description": "Interactive data visualization library for data.gouv.fr tabular datasets",
   "main": "dist/index.js",
