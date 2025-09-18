@@ -53,7 +53,7 @@ function filterDataByCurrentAxes(indicator, axesNames, data) {
   const filteredData = data.filter((d) =>
     Object.entries(currentAxes).every(([axe, values]) =>
       // Conversion en string pour gérer aussi les valeurs booléennes
-      values.map(String).includes(String(itemValue))
+      values.map(String).includes(String(d[axe]))
     )
   )
 
