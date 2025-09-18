@@ -51,13 +51,10 @@ function filterDataByCurrentAxes(indicator, axesNames, data) {
   )
 
   const filteredData = data.filter((d) =>
-    Object.entries(currentAxes).every(([axe, values]) => {
-      const itemValue = d[axe]
+    Object.entries(currentAxes).every(([axe, values]) =>
       // Conversion en string pour gérer aussi les valeurs booléennes
-      const itemValueStr = String(itemValue)
-      const valuesStr = values.map(v => String(v))
-      return valuesStr.includes(itemValueStr)
-    })
+      values.map(String).includes(String(itemValue))
+    )
   )
 
   debug.log(`⚙️ Data filtered: ${data.length} → ${filteredData.length} items`)
