@@ -148,11 +148,8 @@ function getMinMaxYear(years) {
   if (yearRange === 0) {
     // Une seule année : centrer sur 3 années
     return [minYear - 1, minYear + 1]
-  } else if (yearRange === 1) {
-    // Deux années : ajouter une année avant pour avoir 3 années
-    return [minYear - 1, maxYear]
   }
-  // 3 années ou plus : utiliser les valeurs originales
+  // 2 années ou plus : utiliser les valeurs originales
   return [minYear, maxYear]
 }
 
