@@ -50,7 +50,7 @@ Le module permet de visualiser les données des indicateurs avec :
 Chaque fichier doit contenir :
 
 - `date_mesure` : datetime qui représente l'année de la donnée (ex: `2018-01-01T00:00:00.000` pour 2018)
-- **Colonne géographique** : `geocode_region`, `geocode_dpt`, `geocode_departement`, `geocode_epci` ou `geocode_com`
+- **Colonne géographique** : `geocode_region`, `geocode_dpt`, `geocode_departement`, `geocode_epci` ou `geocode_commune`
   > Pour la maille nationale, pas besoin de colonne géographique
 - **Colonne de valeur principale** : la valeur à visualiser
 - **Colonnes des axes** : dimensions de l'indicateur

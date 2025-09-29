@@ -4,7 +4,7 @@ export const GEOCOLUMNS = {
   departement: 'geocode_departement',
   region: 'geocode_region',
   epci: 'geocode_epci',
-  commune: 'geocode_com'
+  commune: 'geocode_commune'
 }
 
 export const MESHES = [
