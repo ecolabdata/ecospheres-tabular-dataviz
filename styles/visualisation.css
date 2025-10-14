@@ -177,18 +177,30 @@
   background-color: #161616;
 }
 
-.indicator-viz .loading-container {
-  margin-top: 16px;
+.indicator-viz .canvas-container {
+  position: relative;
 }
 
-.indicator-viz .loading-container.hidden {
+.indicator-viz .loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.9);
+  z-index: 10;
+}
+
+.indicator-viz .loading-overlay.hidden {
   display: none;
 }
 
 .indicator-viz .loading-text {
   font-size: 0.875rem;
   color: #666;
-  font-style: italic;
 }
 
 .indicator-viz .error-container {

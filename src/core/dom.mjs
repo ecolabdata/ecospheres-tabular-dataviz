@@ -149,6 +149,10 @@ export function showLoading(indicator) {
   const loadingContainer = getLoadingContainer(indicator)
   loadingContainer.innerHTML = `<p class="loading-text">Chargement...</p>`
   loadingContainer.classList.remove('hidden')
+
+  // Affiche le container pour que l'indicateur de chargement soit visible
+  const canvasContainer = getChartCanvas(indicator).parentElement
+  canvasContainer.classList.remove('hidden')
 }
 
 export function hideLoading(indicator) {

@@ -71,9 +71,9 @@ export async function initializeVisualization(options = {}) {
           </div>
           <div id="axes-dropdown-container-${indicator.id}" class="axes-dropdown"></div>
         </div>
-        <div id="loading-container-${indicator.id}" class="loading-container hidden"></div>
         <div id="error-container-${indicator.id}" class="error-container hidden"></div>
         <div style="height:300px; width: 100%;" class="canvas-container hidden">
+          <div id="loading-container-${indicator.id}" class="loading-overlay hidden"></div>
           <canvas id="chart-${indicator.id}"></canvas>
           <p class="help">k: millier, M: million, Md: milliard</p>
         </div>
