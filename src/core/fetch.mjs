@@ -49,7 +49,7 @@ async function fetchPage(url, allData, pageSize = 200) {
       errorText
     )
     throw new Error(
-      `Erreur HTTP ${response.status}: ${response.statusText || 'Échec de la requête'}`
+      errorText || `Erreur HTTP ${response.status}`
     )
   }
   return allData

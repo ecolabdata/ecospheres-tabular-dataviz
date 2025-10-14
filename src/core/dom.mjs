@@ -128,7 +128,7 @@ export function showError(indicator, message, details = '') {
   `
   errorContainer.classList.remove('hidden')
 
-  // Hide the chart and one-year-value containers
+  // Masque les containers des graphiques et valeurs unitaires
   const canvasContainer = getChartCanvas(indicator).parentElement
   const oneYearContainer = getOneYearValueContainer(indicator)
   canvasContainer.classList.add('hidden')
