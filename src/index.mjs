@@ -13,6 +13,8 @@ import {
   getFilesFromContainer,
   getIndicatorFromContainer
 } from './core/dom.mjs'
+import { debug } from './core/debug.mjs'
+import pkg from '../package.json' assert { type: 'json' }
 
 function verifyParams(container) {
   const mandatoryCustomFields = ['indicatorId', 'files', 'indicator']
@@ -49,6 +51,8 @@ function verifyParams(container) {
 export async function initializeVisualization(options = {}) {
   const { timeout = 100 } = options
 
+  debug.log(`📦 @ecolabdata/tabular-dataviz v${pkg.version}`)
+
   setTimeout(() => {
     getDataVizContainers().forEach(async (container) => {
       try {
@@ -67,6 +71,8 @@ export async function initializeVisualization(options = {}) {
           </div>
           <div id="axes-dropdown-container-${indicator.id}" class="axes-dropdown"></div>
         </div>
+        <div id="loading-container-${indicator.id}" class="loading-container hidden"></div>
+        <div id="error-container-${indicator.id}" class="error-container hidden"></div>
         <div style="height:300px; width: 100%;" class="canvas-container hidden">
           <canvas id="chart-${indicator.id}"></canvas>
           <p class="help">k: millier, M: million, Md: milliard</p>

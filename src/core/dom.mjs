@@ -111,3 +111,48 @@ export function getChartTitle(indicator) {
   const container = getContainer(indicator)
   return container.dataset.chartTitle
 }
+
+export function getErrorContainer(indicator) {
+  return document.getElementById(`error-container-${indicator.id}`)
+}
+
+export function showError(indicator, message, details = '') {
+  const errorContainer = getErrorContainer(indicator)
+  const detailsHtml = details ? `<p class="fr-alert__description">${details}</p>` : ''
+  errorContainer.innerHTML = `
+    <div class="fr-alert fr-alert--error">
+      <p class="fr-alert__title">Erreur lors du chargement des données</p>
+      <p>${message}</p>
+      ${detailsHtml}
+    </div>
+  `
+  errorContainer.classList.remove('hidden')
+
+  // Hide the chart and one-year-value containers
+  const canvasContainer = getChartCanvas(indicator).parentElement
+  const oneYearContainer = getOneYearValueContainer(indicator)
+  canvasContainer.classList.add('hidden')
+  oneYearContainer.classList.add('hidden')
+}
+
+export function hideError(indicator) {
+  const errorContainer = getErrorContainer(indicator)
+  errorContainer.classList.add('hidden')
+  errorContainer.innerHTML = ''
+}
+
+export function getLoadingContainer(indicator) {
+  return document.getElementById(`loading-container-${indicator.id}`)
+}
+
+export function showLoading(indicator) {
+  const loadingContainer = getLoadingContainer(indicator)
+  loadingContainer.innerHTML = `<p class="loading-text">Chargement...</p>`
+  loadingContainer.classList.remove('hidden')
+}
+
+export function hideLoading(indicator) {
+  const loadingContainer = getLoadingContainer(indicator)
+  loadingContainer.classList.add('hidden')
+  loadingContainer.innerHTML = ''
+}

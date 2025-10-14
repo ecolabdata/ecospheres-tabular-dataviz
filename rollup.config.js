@@ -1,4 +1,5 @@
 import { nodeResolve } from '@rollup/plugin-node-resolve'
+import json from '@rollup/plugin-json'
 import postcss from 'rollup-plugin-postcss'
 
 export default {
@@ -7,6 +8,6 @@ export default {
     file: 'dist/index.js',
     format: 'es'
   },
-  plugins: [nodeResolve(), postcss()],
+  plugins: [json(), nodeResolve(), postcss()],
   external: ['chart.js']
 }

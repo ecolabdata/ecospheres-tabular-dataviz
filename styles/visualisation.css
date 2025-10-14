@@ -176,3 +176,26 @@
   height: 1.1rem;
   background-color: #161616;
 }
+
+.indicator-viz .loading-container {
+  margin-top: 16px;
+}
+
+.indicator-viz .loading-container.hidden {
+  display: none;
+}
+
+.indicator-viz .loading-text {
+  font-size: 0.875rem;
+  color: #666;
+  font-style: italic;
+}
+
+.indicator-viz .error-container {
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+
+.indicator-viz .error-container.hidden {
+  display: none;
+}

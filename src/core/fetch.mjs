@@ -10,7 +10,11 @@ import {
   getCurrentTerritory,
   getFiles,
   getTabularApiUrl,
-  saveInTheDOM
+  saveInTheDOM,
+  showError,
+  hideError,
+  showLoading,
+  hideLoading
 } from './dom.mjs'
 import { DEFAULT_TABULAR_API_URL, GEOCOLUMNS, YEAR_COLUMN } from './enums.mjs'
 import { formatData } from './format.mjs'
@@ -37,11 +41,15 @@ async function fetchPage(url, allData, pageSize = 200) {
       }
     }
   } else {
+    const errorText = await response.text()
     console.error(
       'Error fetching data from tabular API at url',
       url,
       response.status,
-      await response.text()
+      errorText
+    )
+    throw new Error(
+      `Erreur HTTP ${response.status}: ${response.statusText || 'Échec de la requête'}`
     )
   }
   return allData
@@ -61,6 +69,10 @@ function getGeoCondition(indicator, mesh) {
 export async function fetchData(indicator) {
   const mesh = getCurrentMesh(indicator)
   const territory = getCurrentTerritory(indicator)
+
+  // Clear any previous errors and show loading
+  hideError(indicator)
+  showLoading(indicator)
 
   debug.log(`🔄 Fetching data for indicator ${indicator.id}`, {
     mesh: mesh,
@@ -87,7 +99,10 @@ export async function fetchData(indicator) {
     // Cela permet de ne pas afficher des valeurs d'axe absentes du jeu de données courant
     makeAxesCheckboxes(indicator, file, formatedData)
     makeChart(indicator)
+    hideLoading(indicator)
   } catch (error) {
     debug.error('Failed to fetch data', error)
+    hideLoading(indicator)
+    showError(indicator, error.message)
   }
 }
