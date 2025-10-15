@@ -1,6 +1,6 @@
 {
   "name": "@ecolabdata/tabular-dataviz",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "type": "module",
   "description": "Interactive data visualization library for data.gouv.fr tabular datasets",
   "main": "dist/index.js",
@@ -39,6 +39,7 @@
     "chart.js": "^4.5.0"
   },
   "devDependencies": {
+    "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^15.0.0",
     "rollup": "^4.0.0",
     "rollup-plugin-postcss": "^4.0.2"

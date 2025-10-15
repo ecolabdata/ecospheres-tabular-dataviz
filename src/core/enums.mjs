@@ -3,16 +3,14 @@ export const DEFAULT_TABULAR_API_URL = 'https://tabular-api.data.gouv.fr'
 export const GEOCOLUMNS = {
   departement: 'geocode_departement',
   region: 'geocode_region',
-  epci: 'geocode_epci',
-  commune: 'geocode_commune'
+  epci: 'geocode_epci'
 }
 
 export const MESHES = [
   ['fr', 'National'],
   ['region', 'Région'],
   ['departement', 'Département'],
-  ['epci', 'EPCI'],
-  ['commune', 'Commune']
+  ['epci', 'EPCI']
 ]
 
 // convention de nommage dans les fichiers
