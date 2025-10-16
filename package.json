@@ -16,7 +16,8 @@
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "prepare": "npm run build",
-    "test": "echo \"Tests to be implemented\" && exit 0"
+    "test": "echo \"Tests to be implemented\" && exit 0",
+    "dev-publish": "npm version prerelease --preid dev && npm publish --tag dev"
   },
   "keywords": [
     "dataviz",

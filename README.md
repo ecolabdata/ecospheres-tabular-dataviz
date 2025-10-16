@@ -176,6 +176,10 @@ Documentation de l'API : https://github.com/datagouv/api-tabular
    ```bash
    # Le build se fait automatiquement via le script "prepare"
    npm publish --access public --otp=123456
+
+   # publier une version de dev
+   npm run dev-publish
+   # sur le projet parent : npm install @ecolabdata/tabular-dataviz@dev
    ```
 
    Remplacer `123456` par le code OTP de votre application d'authentification.
