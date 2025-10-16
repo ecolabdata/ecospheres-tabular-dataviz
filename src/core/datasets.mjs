@@ -9,6 +9,7 @@ import {
   getGroupAxeSwitch,
   getSavedDataFromDOM
 } from './dom.mjs'
+import { debug } from './debug.mjs'
 
 function isAxeGrouped(indicator, axe) {
   const groupSwitch = getGroupAxeSwitch(indicator, axe)
@@ -48,11 +49,16 @@ function filterDataByCurrentAxes(indicator, axesNames, data) {
       return [axe, values]
     })
   )
-  return data.filter((d) =>
+
+  const filteredData = data.filter((d) =>
     Object.entries(currentAxes).every(([axe, values]) =>
-      values.includes(d[axe])
+      // Conversion en string pour gérer aussi les valeurs booléennes
+      values.map(String).includes(String(d[axe]))
     )
   )
+
+  debug.log(`⚙️ Data filtered: ${data.length} → ${filteredData.length} items`)
+  return filteredData
 }
 
 function splitDataByAxes(indicator, axesNames, data) {

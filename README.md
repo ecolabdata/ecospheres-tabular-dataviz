@@ -38,7 +38,7 @@ Le module recherche automatiquement les éléments avec la classe `indicator-viz
 
 Le module permet de visualiser les données des indicateurs avec :
 
-- **Choix de la maille** : nationale, régionale, départementale, inter-communale, communale
+- **Choix de la maille** : nationale, régionale, départementale, inter-communale
 - **Choix du territoire** : par exemple Auvergne Rhône-Alpes pour la maille régionale
 - **Filtres sur les axes** : représentent les colonnes dans les fichiers CSV
 - **Graphique interactif** : courbe simple ou séparée selon les axes de l'indicateur
@@ -50,7 +50,7 @@ Le module permet de visualiser les données des indicateurs avec :
 Chaque fichier doit contenir :
 
 - `date_mesure` : datetime qui représente l'année de la donnée (ex: `2018-01-01T00:00:00.000` pour 2018)
-- **Colonne géographique** : `geocode_region`, `geocode_dpt`, `geocode_departement`, `geocode_epci` ou `geocode_com`
+- **Colonne géographique** : `geocode_region`, `geocode_dpt`, `geocode_departement`, `geocode_epci`
   > Pour la maille nationale, pas besoin de colonne géographique
 - **Colonne de valeur principale** : la valeur à visualiser
 - **Colonnes des axes** : dimensions de l'indicateur
@@ -70,7 +70,7 @@ Disponibles dans `file.extras['ecospheres-indicateurs']` :
 }
 ```
 
-- `maille` : `fr`, `region`, `departement`, `epci` ou `commune`
+- `maille` : `fr`, `region`, `departement`, `epci`
 - `value-column` : nom de la colonne contenant la valeur principale
 - `axes` : objet avec les noms des colonnes des axes
 

@@ -176,3 +176,38 @@
   height: 1.1rem;
   background-color: #161616;
 }
+
+.indicator-viz .canvas-container {
+  position: relative;
+}
+
+.indicator-viz .loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.9);
+  z-index: 10;
+}
+
+.indicator-viz .loading-overlay.hidden {
+  display: none;
+}
+
+.indicator-viz .loading-text {
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.indicator-viz .error-container {
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+
+.indicator-viz .error-container.hidden {
+  display: none;
+}

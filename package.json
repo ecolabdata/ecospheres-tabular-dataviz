@@ -39,6 +39,7 @@
     "chart.js": "^4.5.0"
   },
   "devDependencies": {
+    "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^15.0.0",
     "rollup": "^4.0.0",
     "rollup-plugin-postcss": "^4.0.2"

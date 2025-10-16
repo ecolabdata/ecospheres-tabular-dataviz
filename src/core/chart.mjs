@@ -12,6 +12,7 @@ import {
 } from './dom.mjs'
 import { COLORS } from './enums.mjs'
 import { formatBigNumber, formatNumber } from './format.mjs'
+import { debug } from './debug.mjs'
 
 // Plugin "plein écran" basique
 const fullscreenPlugin = {
@@ -151,11 +152,8 @@ function getMinMaxYear(years) {
   if (yearRange === 0) {
     // Une seule année : centrer sur 3 années
     return [minYear - 1, minYear + 1]
-  } else if (yearRange === 1) {
-    // Deux années : ajouter une année avant pour avoir 3 années
-    return [minYear - 1, maxYear]
   }
-  // 3 années ou plus : utiliser les valeurs originales
+  // 2 années ou plus : utiliser les valeurs originales
   return [minYear, maxYear]
 }
 
@@ -183,7 +181,15 @@ function makeOneYearValue(indicator, datasets) {
 }
 
 export function makeChart(indicator) {
+  debug.log(`⚙️ Computing chart for indicator ${indicator.id}`)
+
   const datasets = makeDatasets(indicator)
+  debug.log(`Chart ${indicator.id}: ${datasets.length} datasets generated`)
+
+  if (datasets.length === 0) {
+    debug.warn(`Chart ${indicator.id}: No data to display`)
+  }
+
   applyColors(datasets)
   const canvas = getChartCanvas(indicator)
   const canvasContainer = canvas.parentElement

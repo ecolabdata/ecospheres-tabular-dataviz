@@ -1,4 +1,5 @@
 import { getMeshDropdownContainer, getMeshSelect } from '../core/dom.mjs'
+import { debug } from '../core/debug.mjs'
 import { MESHES } from '../core/enums.mjs'
 import { makeTerritoryDropDown } from './territory.mjs'
 import { makeDropdown } from './utils.mjs'
@@ -23,6 +24,7 @@ export function makeMeshDropdown(indicator, possibleMeshes) {
   container.innerHTML = html
   const meshSelect = getMeshSelect(indicator)
   meshSelect.addEventListener('change', () => {
+    debug.log(`📏 Mesh selected: ${meshSelect.value}`)
     makeTerritoryDropDown(indicator)
   })
 }

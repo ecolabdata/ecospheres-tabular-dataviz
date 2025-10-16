@@ -4,7 +4,7 @@ import {
   getTerritorySelect
 } from '../core/dom.mjs'
 import { fetchData } from '../core/fetch.mjs'
-import { COMMUNES } from '../data/territories/communes.mjs'
+import { debug } from '../core/debug.mjs'
 import { DEPARTEMENTS } from '../data/territories/departements.mjs'
 import { EPCIS } from '../data/territories/epcis.mjs'
 import { REGIONS } from '../data/territories/regions.mjs'
@@ -27,10 +27,6 @@ export async function makeTerritoryDropDown(indicator) {
     epci: {
       label: 'EPCI',
       values: EPCIS
-    },
-    commune: {
-      label: 'Commune',
-      values: COMMUNES
     }
   }
   const mesh = getCurrentMesh(indicator)
@@ -50,6 +46,7 @@ export async function makeTerritoryDropDown(indicator) {
     )
     const territorySelect = getTerritorySelect(indicator)
     territorySelect.addEventListener('change', () => {
+      debug.log(`🗺️ Territory selected: ${territorySelect.value}`)
       fetchData(indicator)
     })
   }
