@@ -86,19 +86,36 @@ Seules les clés de l'objet `axes` sont utilisées par le module. On lui passe d
 
 ### Meta-données de l'indicateur
 
-Disponibles dans `indicator.extras['ecospheres-indicateurs']` :
+Disponibles dans les données originales sous `indicator.extras['ecospheres-indicateurs']` :
 
 ```json
 {
   "unite": "tonnes CO₂",
   "summable": true,
-  "enable_visualization": true
+  "enable_visualization": true,
+  "y_start_at_zero": false,
+  "ignore_format_big_number": false
+}
+```
+
+et transmis au composant de visualisation sous la forme :
+
+```json
+{
+  "id": "xxx",
+  "unite": "tonnes CO₂",
+  "summable": false,
+  "enableVisualisation": false,
+  "yStartAtZero": false,
+  "ignoreFormatBigNumber": false
 }
 ```
 
 - `unite` : texte représentant l'unité (ex: `%`, `tonnes`)
-- `summable` : booléen indiquant si les valeurs sont sommables
-- `enable_visualization` : booléen pour activer/désactiver la visualisation
+- `summable` : booléen indiquant si les valeurs sont sommables (défaut `false`)
+- `enableVisualization` : booléen pour activer/désactiver la visualisation (défaut `false`)
+- `yStartAtZero` : booléen pour forcer l'axe Y à commencer à 0 (défaut `false`)
+- `ignoreFormatBigNumber` : booléen ignorer le formattage des unités avec k, M, Md (défaut `false`)
 
 ## Attributs HTML
 
@@ -159,6 +176,10 @@ Documentation de l'API : https://github.com/datagouv/api-tabular
    ```bash
    # Le build se fait automatiquement via le script "prepare"
    npm publish --access public --otp=123456
+
+   # publier une version de dev
+   npm run dev-publish
+   # sur le projet parent : npm install @ecolabdata/tabular-dataviz@dev
    ```
 
    Remplacer `123456` par le code OTP de votre application d'authentification.

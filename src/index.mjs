@@ -29,7 +29,9 @@ function verifyParams(container) {
     'id',
     'unite',
     'summable',
-    'enableVisualisation'
+    'enableVisualisation',
+    'yStartAtZero',
+    'ignoreFormatBigNumber'
   ]
   mandatoryIndicatorAttributes.forEach((field) => {
     if (!(field in indicator)) {
@@ -58,6 +60,11 @@ export async function initializeVisualization(options = {}) {
       try {
         verifyParams(container)
         const indicator = getIndicatorFromContainer(container)
+        const files = getFilesFromContainer(container)
+
+        // Debug logging des props reçues
+        debug.log(`🔍 Indicator props for ${indicator.id}:`, indicator)
+        debug.log(`📁 Files for indicator ${indicator.id}:`, files)
 
         if (!indicator.enableVisualisation) {
           return
@@ -75,13 +82,12 @@ export async function initializeVisualization(options = {}) {
         <div style="height:300px; width: 100%;" class="canvas-container hidden">
           <div id="loading-container-${indicator.id}" class="loading-overlay hidden"></div>
           <canvas id="chart-${indicator.id}"></canvas>
-          <p class="help">k: millier, M: million, Md: milliard</p>
+          ${indicator.ignoreFormatBigNumber !== true ? '<p class="help">k: millier, M: million, Md: milliard</p>' : ''}
         </div>
         <div id="one-year-value-${indicator.id}" class="one-year-value hidden"></div>
         `
 
         container.innerHTML = html
-        const files = getFiles(indicator)
         const meshes = files.map((f) => f.mesh)
         makeMeshDropdown(indicator, meshes)
         await makeTerritoryDropDown(indicator)
