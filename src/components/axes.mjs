@@ -55,13 +55,14 @@ export function makeAxesCheckboxes(indicator, file, data) {
         </fieldset>
       </details>
       ${
-        indicator.summable &&
-        `
+        indicator.summable
+        ? `
       <div class="fr-toggle">
           <input type="checkbox" checked class="fr-toggle__input" id="group-axe-${suffix}">
           <label class="fr-toggle__label" for="group-axe-${suffix}">Regrouper</label>
       </div>
       `
+        : ''
       }
     </div>
     `
