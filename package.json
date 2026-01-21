@@ -30,7 +30,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ecolabdata/ecospheres-tabular-dataviz.git"
+    "url": "git+https://github.com/ecolabdata/ecospheres-tabular-dataviz.git"
   },
   "bugs": {
     "url": "https://github.com/ecolabdata/ecospheres-tabular-dataviz/issues"
