@@ -11,6 +11,8 @@ export function formatBigNumber(n, maxValue = n, nbDecimals = 1) {
    * L'unité est déterminée par la valeur maximale pour garder la cohérence dans tout le graphe
    * Gère aussi la troncation des décimales
    */
+  n = Number(n)
+  maxValue = Number(maxValue)
   if (maxValue < 1000) {
     return formatNumber(Number(n.toFixed(nbDecimals)))
   }
@@ -44,7 +46,8 @@ export function formatNumber(x) {
 }
 
 function formatValue(value) {
-  if (value) {
+  if (value != null) {
+    value = Number(value)
     if (value < 10 && !Number.isInteger(value)) {
       // Pas plus de deux nombres après la virgule pour gagner en lisibilité
       value = parseFloat(value.toFixed(2))
