@@ -160,34 +160,49 @@ Documentation de l'API : https://github.com/datagouv/api-tabular
 
 ### Processus de publication
 
-1. **Mise à jour de la version** :
-   ```bash
-   # Version patch (1.0.0 → 1.0.1)
-   npm version patch
+1. **Nettoyage et mise à jour de la version** :
 
-   # Version minor (1.0.0 → 1.1.0)
-   npm version minor
+```bash
+# cleanup to avoid cache problems
+rm -rf dist node_modules
+npm install
 
-   # Version major (1.0.0 → 2.0.0)
-   npm version major
-   ```
+# Version patch (1.0.0 → 1.0.1)
+npm version patch
 
-2. **Construction et publication** :
-   ```bash
-   # Le build se fait automatiquement via le script "prepare"
-   npm publish --access public --otp=123456
+# Version minor (1.0.0 → 1.1.0)
+npm version minor
 
-   # publier une version de dev
-   npm run dev-publish
-   # sur le projet parent : npm install @ecolabdata/tabular-dataviz@dev
-   ```
+# Version major (1.0.0 → 2.0.0)
+npm version major
+```
+
+2. **Construction et vérification** :
+
+```bash
+npm run build
+
+# Vérifier que la version dans le build correspond à package.json
+grep 'var version' dist/index.js
+```
+
+3. **Publication** :
+
+```bash
+npm publish --access public --otp=123456
+
+# publier une version de dev
+npm run dev-publish
+# sur le projet parent : npm install @ecolabdata/tabular-dataviz@dev
+```
 
    Remplacer `123456` par le code OTP de votre application d'authentification.
 
-3. **Vérification** :
-   ```bash
-   npm view @ecolabdata/tabular-dataviz
-   ```
+4. **Vérification** :
+
+```bash
+npm view @ecolabdata/tabular-dataviz
+```
 
 ### Structure des fichiers publiés
 
